@@ -1,0 +1,13 @@
+
+.btn-icon-jj-chain--plus, .btn-icon-jj-chain--minus {
+	width: 20px;
+	height: 20px;
+}
+
+.btn-icon-jj-chain--plus {
+	background: url("icon-sprite.png") no-repeat scroll 0 0 transparent !important;
+}
+
+.btn-icon-jj-chain--minus {
+	background: url("icon-sprite.png") no-repeat scroll 0 -21px transparent !important;
+}

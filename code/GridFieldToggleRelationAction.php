@@ -65,9 +65,9 @@ class GridFieldToggleRelationAction extends GridFieldDeleteAction {
 
 		// todo
 		$isLinked = $this->isLinked($record->ID);
-		$linkExtraClass = $isLinked ? 'gridfield-button-unlink' : 'gridfield-button-link';
+		$linkExtraClass = $isLinked ? 'jj-gridfield-button-unlink' : 'jj-gridfield-button-link';
 		$title = $isLinked ? _t('GridAction.UnlinkRelation', "Unlink") : _t('GridAction.UnlinkRelation', "Link");
-		$iconClass = $isLinked ? 'chain--minus' : 'chain--plus';
+		$iconClass = $isLinked ? 'jj-chain--minus' : 'jj-chain--plus';
 
 		$field = GridField_FormAction::create($gridField, 'ToggleRelation'.$record->ID, false,
 				"togglerelation", array('RecordID' => $record->ID))
@@ -94,7 +94,8 @@ class GridFieldToggleRelationAction extends GridFieldDeleteAction {
 	 * @return void
 	 */
 	public function handleAction(GridField $gridField, $actionName, $arguments, $data) {
-		if($actionName != 'togglerelation') return;
+		if($actionName != 'togglerelation' || !$this->ownerModel->ID) return;
+
 
 		$itemToHandle = $gridField->getList()->byID($arguments['RecordID']);
 
@@ -128,7 +129,7 @@ class GridFieldToggleRelationAction extends GridFieldDeleteAction {
 				}
 			} else {
 				// addToRelation
-				
+				print_r('foofoo');
 				$relField = $this->relationName . 'ID';
 
 				$this->ownerModel = $this->setRelationFieldByObj($this->ownerModel, $relObj, $this->relationName, $relType);
@@ -167,6 +168,7 @@ class GridFieldToggleRelationAction extends GridFieldDeleteAction {
 
 	protected function setRelationFieldByObj($obj, $relObj, $relName, $relType) {
 		if ($relType == 'has_one') {
+			print_r($obj);
 			$relField = $relName . 'ID';
 			$obj->$relField = $relObj->ID;
 		} else if ($relType == 'belongs_to') {

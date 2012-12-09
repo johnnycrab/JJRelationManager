@@ -2,7 +2,7 @@
 
 class JJRelationGridField extends GridField {
 
-	public function __construct($name, $title = null, $owner = null, $relationName = '', GridFieldConfig $config = null) {
+	public function __construct($name, $title = null, $owner = null, $relationName = '', GridFieldConfig_RecordEditor $config = null) {
 		if (!$config) {
 			$config = GridFieldConfig_RecordEditor::create();
 		}
@@ -20,7 +20,7 @@ class JJRelationGridField extends GridField {
 			$dataList = DataList::create($class)->where('ID=' . $owner->$relationName()->ID);
 		}
 
-		$config->removeComponentsByType('GridFieldDeleteAction');
+		//$config->removeComponentsByType('GridFieldDeleteAction');
 		$config->addComponent(new GridFieldToggleRelationAction($owner, $relationName, $dataList));
 		$config->addComponent(new GridFieldRelationManager($owner->class, $relationName));
 

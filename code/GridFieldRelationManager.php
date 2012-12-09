@@ -38,10 +38,11 @@ class GridFieldRelationManager implements GridField_HTMLProvider, GridField_URLH
 
 		//Requirements::css(BULK_EDIT_TOOLS_PATH . '/css/GridFieldBulkManager.css');
 		//print_r(BULK_EDIT_TOOLS_PATH . '/css/GridFieldBulkManager.css');
-		Requirements::javascript(JJ_RELATION_MANAGER_PATH . '/javascript/JJRelationManager.js');	
+		Requirements::javascript(JJ_RELATION_MANAGER_PATH . '/javascript/JJRelationManager.js');
+		Requirements::css(JJ_RELATION_MANAGER_PATH . '/css/JJRelationManager.css');
 		
 		$checked = Session::get('GridField_' . $this->cookieTitle . '_showRelated') ? 'checked="checked"' : '';
-		$toggleSelectAllHTML = '<span>Show related <input id="toggleRelationBtn" autocomplete="off" type="checkbox" title="select all" name="toggleRelationBtn" ' . $checked  . ' data-url="'.$gridField->Link('showrelated').'" /></span>';
+		$toggleSelectAllHTML = '<span>' . _t('JJGrid.TOGGLESELECT') . '<input id="toggleRelationBtn" autocomplete="off" type="checkbox" title="select all" name="toggleRelationBtn" ' . $checked  . ' data-url="'.$gridField->Link('showrelated').'" /></span>';
 		
 		$html = '<div id="relationManagerOptions">'.$toggleSelectAllHTML.'</div>';
 		
